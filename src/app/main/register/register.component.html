@@ -1,0 +1,100 @@
+<section class="header">
+  <h1>Cadastrando um item</h1>
+  <h1>Alterando um item</h1>
+</section>
+<form nz-form nzLayout="vertical" [formGroup]="_form" (ngSubmit)="onSubmit()">
+  <nz-form-item>
+    <nz-form-label>Nome</nz-form-label>
+    <nz-form-control nzErrorTip="Campo obrigatório, informe até 70 caracteres.">
+      <nz-input-group>
+        <input
+          type="text"
+          nz-input
+          formControlName="name"
+          placeholder="Digite o nome do item"
+          id="name"
+        />
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <div nz-row [nzGutter]="16">
+    <div nz-col nzSpan="12">
+      <nz-form-item>
+        <nz-form-label>Categoria</nz-form-label>
+        <nz-form-control nzErrorTip="Campo obrigatório">
+          <nz-select
+            [nzShowSearch]="true"
+            formControlName="category"
+            nzAllowClear
+            nzPlaceHolder="Selecione a categoria"
+            [nzOptions]="_categories"
+            id="category"
+          >
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col [nzSpan]="12">
+      <nz-form-item>
+        <nz-form-label>Quantidade</nz-form-label>
+        <nz-form-control nzErrorTip="Campo obrigatório">
+          <nz-input-group>
+            <input
+              type="text"
+              nz-input
+              formControlName="quantity"
+              placeholder="Qual é a quantidade?"
+              mask="separator.0"
+              thousandSeparator="."
+              [leadZero]="true"
+              id="quantity"
+            />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+  <div nz-row [nzGutter]="16">
+    <div nz-col nzSpan="12">
+      <nz-form-item>
+        <nz-form-label>Valor</nz-form-label>
+        <nz-form-control nzErrorTip="Campo obrigatório.">
+          <nz-input-group nzPrefix="R$">
+            <input
+              class="number"
+              type="text"
+              nz-input
+              formControlName="price"
+              placeholder="Informe o valor do item"
+              mask="separator.2"
+              thousandSeparator="."
+              decimalMarker=","
+              [leadZero]="true"
+              id="price"
+            />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col nzSpan="12">
+      <nz-form-item>
+        <nz-form-label>Status</nz-form-label>
+        <nz-form-control>
+          <label
+            nz-checkbox
+            formControlName="status"
+            id="status"
+            (ngModelChange)="onHandleStatus($event)"
+          >
+            {{ _form.get('status')?.value }}
+          </label>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+  <nz-divider></nz-divider>
+  <section class="action">
+    <button nz-button nzType="default" nzSize="large">Cancelar</button>
+    <button nz-button nzType="primary" nzSize="large" [nzLoading]="false">Salvar</button>
+  </section>
+</form>

@@ -1,0 +1,28 @@
+<nz-table #basicTable [nzData]="(_data$ | async) || []">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Categoria</th>
+      <th>Quantidade</th>
+      <th>Preço</th>
+      <th>Status</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (data of basicTable.data; track data) {
+      <tr>
+        <td>{{ data.name }}</td>
+        <td>{{ data.category }}</td>
+        <td>{{ data.quantity }}</td>
+        <td>{{ data.price }}</td>
+        <td>{{ data.status }}</td>
+        <td>
+          <a [routerLink]="'/main/register/' + data.id">Editar 一 {{ data.id }}</a>
+          <nz-divider nzType="vertical"></nz-divider>
+          <a (click)="onHandleDelete(data.id!)">Delete</a>
+        </td>
+      </tr>
+    }
+  </tbody>
+</nz-table>
