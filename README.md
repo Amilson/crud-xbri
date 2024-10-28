@@ -11,7 +11,7 @@ Foram utilizados os seguintes frameworks:
 - ngx-mask para tratativas de mascáras.
 - faker-js para massa de dados fictícios.
 - eslint e prettier para padronização de código.
-- playwrite para testes e2e.
+- playwright para testes e2e.
 
 ### Disponibilidade
 
@@ -95,7 +95,7 @@ Esta opção cadastra 2.000 registros com dados randômicos
 
 ### 6 - Extra 3
 
-- Testes e2e com playwrite
+- Testes e2e com playwright
 
 Foi criada uma estrutura básica onde é possível garantir o teste de integração para alguns casos, são eles:
 
