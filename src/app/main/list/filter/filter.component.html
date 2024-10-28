@@ -1,0 +1,97 @@
+<form nz-form nzLayout="vertical" [formGroup]="_form">
+  <div nz-row [nzGutter]="16">
+    <div nz-col nzSpan="5">
+      <nz-form-item>
+        <nz-form-label>{{ 'FIELDS.NAME' | translate }}</nz-form-label>
+        <nz-form-control [nzErrorTip]="'REGISTER.ERRORS.NAME' | translate: { qtd: 70 }">
+          <nz-input-group>
+            <input
+              type="text"
+              nz-input
+              formControlName="name"
+              [placeholder]="'LIST.FILTER.PLACEHOLDERS.NAME' | translate"
+              id="name"
+            />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col nzSpan="5">
+      <nz-form-item>
+        <nz-form-label>{{ 'FIELDS.CATEGORY' | translate }}</nz-form-label>
+        <nz-form-control [nzErrorTip]="'REGISTER.ERRORS.MANDATORY' | translate">
+          <nz-select
+            [nzShowSearch]="true"
+            formControlName="category"
+            nzAllowClear
+            [nzPlaceHolder]="'LIST.FILTER.PLACEHOLDERS.CATEGORY' | translate"
+            id="category"
+          >
+            @for (option of _categories; track option) {
+              <nz-option [nzValue]="option" [nzLabel]="'ENUMS.CATEGORY.' + option | translate">
+              </nz-option>
+            }
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col [nzSpan]="4">
+      <nz-form-item>
+        <nz-form-label>{{ 'FIELDS.QUANTITY' | translate }}</nz-form-label>
+        <nz-form-control [nzErrorTip]="'REGISTER.ERRORS.MANDATORY' | translate">
+          <nz-input-group>
+            <input
+              type="text"
+              nz-input
+              formControlName="quantity"
+              [placeholder]="'LIST.FILTER.PLACEHOLDERS.QUANTITY' | translate"
+              mask="separator.0"
+              thousandSeparator="."
+              [leadZero]="true"
+              id="quantity"
+            />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col nzSpan="5">
+      <nz-form-item>
+        <nz-form-label>{{ 'FIELDS.PRICE' | translate }}</nz-form-label>
+        <nz-form-control [nzErrorTip]="'REGISTER.ERRORS.MANDATORY' | translate">
+          <nz-input-group nzPrefix="R$">
+            <input
+              class="number"
+              type="text"
+              nz-input
+              formControlName="price"
+              [placeholder]="'LIST.FILTER.PLACEHOLDERS.PRICE' | translate"
+              mask="separator.2"
+              thousandSeparator="."
+              decimalMarker=","
+              [leadZero]="true"
+              id="price"
+            />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col nzSpan="5">
+      <nz-form-item>
+        <nz-form-label>{{ 'FIELDS.PRICE' | translate }}</nz-form-label>
+        <nz-form-control>
+          <label nz-checkbox formControlName="status" id="status">
+            {{ 'ENUMS.STATUS.' + _form.get('status')?.value | translate }}
+          </label>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+  <section class="action">
+    <button nz-button nzType="default" nzSize="default" (click)="onClear()">
+      {{ 'BUTTONS.CLEAR' | translate }}
+    </button>
+    <button nz-button nzType="default" nzSize="default" (click)="close.next(null)">
+      {{ 'BUTTONS.CLOSE' | translate }}
+    </button>
+  </section>
+</form>

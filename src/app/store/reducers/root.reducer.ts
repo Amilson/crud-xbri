@@ -48,12 +48,25 @@ export const seederReducer = () => {
 
         try {
           data = JSON.parse(atob(localStorage.getItem('xbri-saved-items') || '{}'));
-          data.push(handled);
         } catch (e) {
           //not to do
         }
 
+        data.push(handled);
+
         localStorage.setItem('xbri-saved-items', btoa(JSON.stringify(data)));
+      } else if (action.type === actions.upsertAll.type) {
+        let data = [];
+
+        try {
+          data = JSON.parse(atob(localStorage.getItem('xbri-saved-items') || '{}'));
+        } catch (e) {
+          //not to do
+        }
+
+        data.push((action as any)?.data);
+
+        localStorage.setItem('xbri-saved-items', btoa(JSON.stringify(data[0])));
       } else if (action.type === actions.remove.type) {
         try {
           const data: ItemData[] = JSON.parse(
@@ -65,6 +78,26 @@ export const seederReducer = () => {
           Object.entries(
             data?.map((_: ItemData) => {
               if (_.id !== (action as any)?.itemId) {
+                entities.push(_);
+              }
+            })
+          );
+
+          localStorage.setItem('xbri-saved-items', btoa(JSON.stringify(entities)));
+        } catch (e) {
+          //not to do
+        }
+      } else if (action.type === actions.removeAll.type) {
+        try {
+          const data: ItemData[] = JSON.parse(
+            atob(localStorage.getItem('xbri-saved-items') || '{}')
+          );
+
+          const entities: ItemData[] = [];
+
+          Object.entries(
+            data?.map((_: ItemData) => {
+              if (!(action as any).data.join('#').includes(_.id)) {
                 entities.push(_);
               }
             })

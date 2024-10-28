@@ -1,0 +1,121 @@
+{
+  "BUTTONS": {
+    "CANCEL": "Cancel",
+    "SAVE": "Save",
+    "SEARCH": "Search",
+    "NEW": "New",
+    "CLEAR": "Clear",
+    "CLOSE": "Close"
+  },
+  "FIELDS": {
+    "NAME": "Name",
+    "CATEGORY": "Category",
+    "QUANTITY": "Quantity",
+    "PRICE": "Price",
+    "STATUS": "Status"
+  },
+  "LIST": {
+    "TITLE": "List of items",
+    "TABLE": {
+      "HEADERS": {
+        "NAME": "Name",
+        "CATEGORY": "Category",
+        "QUANTITY": "Quantity",
+        "PRICE": "Price",
+        "STATUS": "Status",
+        "ACTIONS": "Actions",
+        "SELECTED": "Selected"
+      },
+      "ACTIONS": {
+        "EDIT": "Edit",
+        "DELETE": "Delete"
+      }
+    },
+    "FILTER": {
+      "PLACEHOLDERS": {
+        "NAME": "Type the item name",
+        "CATEGORY": "Select the category",
+        "QUANTITY": "Quantity greater than",
+        "PRICE": "Price greater than"
+      }
+    },
+    "SUMMARY": {
+      "TOTAL": "Total",
+      "ACTIVES": "Actives",
+      "INACTIVES": "Inactives",
+      "AVERAGE-ACTIVES": "% Actives",
+      "AVERAGE-INACTIVES": "% Inactive",
+      "SUM-QTD-ACTIVES": "Actives Quantity",
+      "SUM-QTD-INACTIVES": "Inactives Quantity"
+    },
+    "SETTINGS": {
+      "SUMMARY": {
+        "true": "Hide summary",
+        "false": "Show summary"
+      },
+      "FAKE-DATA": "Generate 2000 rows"
+    }
+  },
+  "REGISTER": {
+    "TITLE-EDIT": "Editing the item",
+    "TITLE-NEW": "Register new item",
+    "SUB-TITLE": "ID: {{ itemId }}",
+    "PLACEHOLDERS": {
+      "NAME": "Type the item name",
+      "CATEGORY": "Select the category",
+      "QUANTITY": "What is the quantity?",
+      "PRICE": "Type the item price"
+    },
+    "ERRORS": {
+      "NAME": "Field required, max {{ qtd }} chars",
+      "MANDATORY": "Field required",
+      "MAX-70": "Max {{ qtd }} chars"
+    }
+  },
+  "ENUMS": {
+    "CATEGORY": {
+      "CAR": "Car",
+      "TRUCK": "Truck",
+      "PLANE": "Plane"
+    },
+    "STATUS": {
+      "true": "Active",
+      "false": "Inactive"
+    }
+  },
+  "SIDEBAR": {
+    "TITLE": "XBRI",
+    "ITEMS": "Items",
+    "REGISTER": "Register",
+    "LIST": "List"
+  },
+  "FOOTER": {
+    "ALL-RIGHTS": "All rights reserved - XBRI - {{ year }}"
+  },
+  "ALERTS": {
+    "FINISH-SUCCESS": {
+      "TITLE": "Information",
+      "CONTENT": "Item(s) successfully removed"
+    },
+    "FINISH-ERROR": {
+      "TITLE": "Information",
+      "CONTENT": "Problems removing item (this is a deliberate message)"
+    },
+    "CONFIRM-REMOVE": {
+      "TITLE": "Action confirmation",
+      "CONTENT": "Upon confirmation, the record will be permanently removed",
+      "CANCEL": "Cancel",
+      "CONFIRM": "OK"
+    },
+    "CONFIRM-REMOVE-ALL": {
+      "TITLE": "Action confirmation",
+      "CONTENT": "Upon confirmation, the following amount of records will be removed:",
+      "CANCEL": "Cancel",
+      "CONFIRM": "OK"
+    },
+    "OPERATION": {
+      "TITLE": "Information",
+      "CONTENT": "Operation performed successfully"
+    }
+  }
+}

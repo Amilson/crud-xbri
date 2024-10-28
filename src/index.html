@@ -1,13 +1,162 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>CrudXbri</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-</head>
-<body>
-  <app-root></app-root>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <title>CrudXbri</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+
+    <style type="text/css">
+      body {
+        display: flex;
+        flex-direction: column;
+      }
+
+      #xbri-splash-screen {
+        position: absolute;
+        z-index: 999999999;
+        background: #f2f2f2;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+      }
+
+      .logo {
+        height: 48px;
+      }
+
+      .tire {
+        width: 80px;
+        height: 80px;
+        border: 11px solid #333;
+        border-radius: 50%;
+        position: relative;
+        animation: rotateTire 1s linear infinite;
+        overflow: hidden;
+        background: radial-gradient(circle, #b7b5b5 45%, transparent 45%);
+      }
+
+      /* Spokes */
+      .spoke {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 8px;
+        height: 40px;
+        background-color: #747373; /* Silver color for sporty look */
+        border-radius: 4px;
+        transform-origin: bottom center;
+      }
+
+      /* Position spokes around the wheel */
+      .spoke1 {
+        transform: translate(-50%, -100%) rotate(0deg);
+      }
+      .spoke2 {
+        transform: translate(-50%, -100%) rotate(45deg);
+      }
+      .spoke3 {
+        transform: translate(-50%, -100%) rotate(90deg);
+      }
+      .spoke4 {
+        transform: translate(-50%, -100%) rotate(135deg);
+      }
+      .spoke5 {
+        transform: translate(-50%, -100%) rotate(180deg);
+      }
+      .spoke6 {
+        transform: translate(-50%, -100%) rotate(225deg);
+      }
+      .spoke7 {
+        transform: translate(-50%, -100%) rotate(270deg);
+      }
+      .spoke8 {
+        transform: translate(-50%, -100%) rotate(315deg);
+      }
+
+      /* Center hubcap */
+      .hubcap {
+        width: 30px;
+        height: 30px;
+        background-color: #424141;
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.4);
+      }
+
+      /* Text inside the tire */
+      .text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 18px;
+        color: #000; /* Default color for text */
+        font-weight: bold;
+        text-align: center;
+        z-index: 2; /* Ensure text is above everything else */
+        text-shadow:
+          -1px -1px 0 #ffffff,
+          1px -1px 0 #ffffff,
+          -1px 1px 0 #ffffff,
+          1px 1px 0 #ffffff; /* White border effect */
+      }
+
+      /* Color for the letter X */
+      .text .red {
+        color: #ff0000; /* Red color for the letter X */
+        text-shadow:
+          -1px -1px 0 #ffffff,
+          1px -1px 0 #ffffff,
+          -1px 1px 0 #ffffff,
+          1px 1px 0 #ffffff; /* White border effect for X */
+      }
+
+      /* Tire rotation animation */
+      @keyframes rotateTire {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <xbri-splash-screen id="xbri-splash-screen" data-testid="xbri-splash-screen">
+      <img class="logo" src="/assets/images/xbri-logo-correta.svg" />
+      <div class="road"></div>
+      <div class="tire">
+        <div class="hubcap"></div>
+        <div class="text"><span class="red">x</span>bri</div>
+        <div class="spoke spoke1"></div>
+        <div class="spoke spoke2"></div>
+        <div class="spoke spoke3"></div>
+        <div class="spoke spoke4"></div>
+        <div class="spoke spoke5"></div>
+        <div class="spoke spoke6"></div>
+        <div class="spoke spoke7"></div>
+        <div class="spoke spoke8"></div>
+      </div>
+    </xbri-splash-screen>
+    <app-root></app-root>
+  </body>
 </html>

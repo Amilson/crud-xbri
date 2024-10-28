@@ -1,37 +1,48 @@
 <nz-layout class="app-layout">
   <nz-sider
-    class="menu-sidebar"
     nzCollapsible
-    nzWidth="256px"
     nzBreakpoint="md"
-    [(nzCollapsed)]="isCollapsed"
+    [(nzCollapsed)]="_isCollapsed"
     [nzTrigger]="null"
+    nzWidth="260px"
   >
     <div class="sidebar-logo">
       <a href="https://ng.ant.design/" target="_blank">
-        <img src="https://ng.ant.design/assets/img/logo.svg" alt="logo" />
-        <h1>Ant Design Of Angular</h1>
+        <img src="/assets/images/xbri-logo-correta.svg" alt="logo" />
       </a>
     </div>
-    <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
-      <li nz-submenu nzOpen nzTitle="Itens" nzIcon="ordered-list">
-        <ul>
-          <li nz-menu-item nzMatchRouter>
-            <a routerLink="/main/register"> Cadastrar </a>
-          </li>
-          <li nz-menu-item nzMatchRouter>
-            <a routerLink="/main/list"> Listar </a>
-          </li>
-        </ul>
+    <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="_isCollapsed">
+      <li nz-menu-item nzMatchRouter (click)="onHandleClickToNavigate()">
+        <a routerLink="/main/register"> {{ 'SIDEBAR.REGISTER' | translate }}</a>
+      </li>
+      <li nz-menu-item nzMatchRouter (click)="onHandleClickToNavigate()">
+        <a routerLink="/main/list">
+          {{ 'SIDEBAR.LIST' | translate }}
+        </a>
       </li>
     </ul>
   </nz-sider>
   <nz-layout>
     <nz-header>
       <div class="app-header">
-        <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
-          <span class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></span>
+        <span class="header-trigger" (click)="_isCollapsed = !_isCollapsed">
+          <span class="trigger" nz-icon [nzType]="_isCollapsed ? 'menu-unfold' : 'menu-fold'">
+          </span>
         </span>
+        <button nz-button nz-dropdown [nzDropdownMenu]="menu" data-testid="btn-change-i18n">
+          {{ _i18n }}
+          <span nz-icon nzType="down"></span>
+        </button>
+        <nz-dropdown-menu #menu="nzDropdownMenu">
+          <ul nz-menu>
+            <li nz-menu-item (click)="onChangeLang('pt-BR')" data-testid="btn-change-i18n-pt-BR">
+              pt-BR
+            </li>
+            <li nz-menu-item (click)="onChangeLang('en-US')" data-testid="btn-change-i18n-en-US">
+              en-US
+            </li>
+          </ul>
+        </nz-dropdown-menu>
       </div>
     </nz-header>
     <nz-content>
@@ -39,5 +50,8 @@
         <router-outlet></router-outlet>
       </div>
     </nz-content>
+    <nz-footer>
+      {{ 'FOOTER.ALL-RIGHTS' | translate: { year: _year } }}
+    </nz-footer>
   </nz-layout>
 </nz-layout>

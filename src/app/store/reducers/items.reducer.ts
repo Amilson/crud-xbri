@@ -30,6 +30,16 @@ export const reducer = createReducer(
       ...state
     });
   }),
+  on(actions.upsertAll, (state, action) => {
+    return adapter.upsertMany(action.data, {
+      ...state
+    });
+  }),
+  on(actions.removeAll, (state, action) => {
+    return adapter.removeMany(action.data, {
+      ...state
+    });
+  }),
   on(actions.remove, (state, action) => {
     return adapter.removeOne(action.itemId, {
       ...state

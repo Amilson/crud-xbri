@@ -7,7 +7,10 @@ import {
   ValidatorFn,
   Validators
 } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { CategoryEnums } from '@enums';
 import { Store } from '@ngrx/store';
+import { TranslateModule } from '@ngx-translate/core';
 import { items as selectors } from '@store/selectors';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
@@ -41,7 +44,9 @@ import { RegisterService } from './providers';
     NzButtonModule,
     NzLayoutModule,
     NzDividerModule,
-    NzNotificationModule
+    NzNotificationModule,
+    RouterModule,
+    TranslateModule
   ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss',
@@ -53,16 +58,12 @@ export class RegisterComponent implements OnInit, OnDestroy {
   _form = this.fb.group({
     name: ['', [Validators.required, Validators.maxLength(70)]],
     category: ['', [Validators.required]],
-    quantity: [0, [Validators.required]],
-    price: [0, [Validators.required]],
+    quantity: [null, [Validators.required]],
+    price: [null, [Validators.required]],
     status: [true, [Validators.required]]
   });
 
-  _categories = [
-    { label: 'CAR', value: 'CAR' },
-    { label: 'TRUCK', value: 'TRUCK' },
-    { label: 'PLANE', value: 'PLANE' }
-  ];
+  _categories = Object.keys(CategoryEnums);
 
   private subscription = new Subscription();
 
@@ -77,7 +78,10 @@ export class RegisterComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subscription.add(
       this.store.select(selectors.selectOne({ id: this.itemId })).subscribe((resp) => {
-        this._form.patchValue(resp);
+        if (resp) {
+          this._form.patchValue(resp);
+          this.onHandleStatus(resp.status!);
+        }
       })
     );
   }

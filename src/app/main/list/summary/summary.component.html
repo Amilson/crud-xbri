@@ -1,0 +1,79 @@
+<ng-container *ngIf="_data$ | async as summary">
+  <nz-row [nzGutter]="16">
+    <nz-col [nzSpan]="5">
+      <nz-card>
+        <nz-statistic
+          [nzValue]="(summary.qtd | number)!"
+          [nzTitle]="'LIST.SUMMARY.TOTAL' | translate"
+          [nzValueStyle]="{ color: '#3F8600' }"
+        >
+        </nz-statistic>
+      </nz-card>
+    </nz-col>
+    <nz-col [nzSpan]="4">
+      <nz-card>
+        <nz-statistic
+          [nzValue]="(summary.qtdActives | number)!"
+          [nzTitle]="'LIST.SUMMARY.ACTIVES' | translate"
+          [nzValueStyle]="{ color: '#383ee1' }"
+        >
+        </nz-statistic>
+      </nz-card>
+    </nz-col>
+    <nz-col [nzSpan]="4">
+      <nz-card>
+        <nz-statistic
+          [nzValue]="(summary.qtdInactives | number)!"
+          [nzTitle]="'LIST.SUMMARY.INACTIVES' | translate"
+          [nzValueStyle]="{ color: '#860000' }"
+        >
+        </nz-statistic>
+      </nz-card>
+    </nz-col>
+    <nz-col [nzSpan]="6">
+      <nz-card>
+        <nz-statistic
+          [nzValue]="(summary.averageActives | number: '1.0-2')!"
+          [nzTitle]="'LIST.SUMMARY.AVERAGE-ACTIVES' | translate"
+          nzSuffix="%"
+          [nzValueStyle]="{ color: '#383ee1' }"
+        >
+        </nz-statistic>
+      </nz-card>
+    </nz-col>
+    <nz-col [nzSpan]="5">
+      <nz-card>
+        <nz-statistic
+          [nzValue]="(summary.averageInactives | number: '1.0-2')!"
+          [nzTitle]="'LIST.SUMMARY.AVERAGE-INACTIVES' | translate"
+          nzSuffix="%"
+          [nzValueStyle]="{ color: '#860000' }"
+        >
+        </nz-statistic>
+      </nz-card>
+    </nz-col>
+  </nz-row>
+  <nz-divider></nz-divider>
+  <nz-row [nzGutter]="16">
+    <nz-col [nzSpan]="12">
+      <nz-card>
+        <nz-statistic
+          [nzValue]="(summary.sumQtdActives | number)!"
+          [nzTitle]="'LIST.SUMMARY.SUM-QTD-ACTIVES' | translate"
+          [nzValueStyle]="{ color: '#383ee1' }"
+        >
+        </nz-statistic>
+      </nz-card>
+    </nz-col>
+    <nz-col [nzSpan]="12">
+      <nz-card>
+        <nz-statistic
+          [nzValue]="(summary.sumQtdInactives | number)!"
+          [nzTitle]="'LIST.SUMMARY.SUM-QTD-INACTIVES' | translate"
+          [nzValueStyle]="{ color: '#860000' }"
+        >
+        </nz-statistic>
+      </nz-card>
+    </nz-col>
+  </nz-row>
+</ng-container>

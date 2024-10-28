@@ -1,0 +1,29 @@
+:host {
+  .actions {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+  }
+
+  .item-action {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .section-delete {
+    padding: 0px 24px;
+    display: flex;
+    align-items: center;
+    gap: 34px;
+  }
+
+  .icon-delete {
+    color: red;
+  }
+}
+
+.ant-pagination-item {
+  border-radius: 8px !important;
+}

@@ -1,53 +1,66 @@
-<section class="header">
-  <h1>Cadastrando um item</h1>
-  <h1>Alterando um item</h1>
-</section>
-<form nz-form nzLayout="vertical" [formGroup]="_form" (ngSubmit)="onSubmit()">
+<h1 *ngIf="!itemId">{{ 'REGISTER.TITLE-NEW' | translate }}</h1>
+<ng-template [ngIf]="itemId">
+  <h1>{{ 'REGISTER.TITLE-EDIT' | translate }}</h1>
+  <h4>{{ 'REGISTER.SUB-TITLE' | translate: { itemId } }}</h4>
+</ng-template>
+
+<nz-divider></nz-divider>
+<form nz-form nzLayout="vertical" [formGroup]="_form">
   <nz-form-item>
-    <nz-form-label>Nome</nz-form-label>
-    <nz-form-control nzErrorTip="Campo obrigatório, informe até 70 caracteres.">
+    <nz-form-label>{{ 'FIELDS.NAME' | translate }}</nz-form-label>
+    <nz-form-control [nzErrorTip]="'REGISTER.ERRORS.NAME' | translate: { qtd: 70 }">
       <nz-input-group>
         <input
           type="text"
           nz-input
           formControlName="name"
-          placeholder="Digite o nome do item"
+          [placeholder]="'REGISTER.PLACEHOLDERS.NAME' | translate"
           id="name"
+          data-testid="input-name"
         />
       </nz-input-group>
     </nz-form-control>
   </nz-form-item>
   <div nz-row [nzGutter]="16">
-    <div nz-col nzSpan="12">
+    <div nz-col nzXs="24" nzMd="12">
       <nz-form-item>
-        <nz-form-label>Categoria</nz-form-label>
-        <nz-form-control nzErrorTip="Campo obrigatório">
+        <nz-form-label>{{ 'FIELDS.CATEGORY' | translate }}</nz-form-label>
+        <nz-form-control [nzErrorTip]="'REGISTER.ERRORS.MANDATORY' | translate">
           <nz-select
             [nzShowSearch]="true"
             formControlName="category"
             nzAllowClear
-            nzPlaceHolder="Selecione a categoria"
-            [nzOptions]="_categories"
+            [nzPlaceHolder]="'REGISTER.PLACEHOLDERS.CATEGORY' | translate"
             id="category"
+            data-testid="select-category"
           >
+            @for (option of _categories; track option) {
+              <nz-option
+                [nzValue]="option"
+                [nzLabel]="'ENUMS.CATEGORY.' + option | translate"
+                [attr.data-testid]="'select-category-' + option"
+              >
+              </nz-option>
+            }
           </nz-select>
         </nz-form-control>
       </nz-form-item>
     </div>
-    <div nz-col [nzSpan]="12">
+    <div nz-col nzXs="24" nzMd="12">
       <nz-form-item>
-        <nz-form-label>Quantidade</nz-form-label>
-        <nz-form-control nzErrorTip="Campo obrigatório">
+        <nz-form-label>{{ 'FIELDS.QUANTITY' | translate }}</nz-form-label>
+        <nz-form-control [nzErrorTip]="'REGISTER.ERRORS.MANDATORY' | translate">
           <nz-input-group>
             <input
               type="text"
               nz-input
               formControlName="quantity"
-              placeholder="Qual é a quantidade?"
+              [placeholder]="'REGISTER.PLACEHOLDERS.QUANTITY' | translate"
               mask="separator.0"
               thousandSeparator="."
               [leadZero]="true"
               id="quantity"
+              data-testid="input-quantity"
             />
           </nz-input-group>
         </nz-form-control>
@@ -55,46 +68,70 @@
     </div>
   </div>
   <div nz-row [nzGutter]="16">
-    <div nz-col nzSpan="12">
+    <div nz-col nzXs="24" nzMd="12">
       <nz-form-item>
-        <nz-form-label>Valor</nz-form-label>
-        <nz-form-control nzErrorTip="Campo obrigatório.">
+        <nz-form-label>{{ 'FIELDS.PRICE' | translate }}</nz-form-label>
+        <nz-form-control [nzErrorTip]="'REGISTER.ERRORS.MANDATORY' | translate">
           <nz-input-group nzPrefix="R$">
             <input
               class="number"
               type="text"
               nz-input
               formControlName="price"
-              placeholder="Informe o valor do item"
+              [placeholder]="'REGISTER.PLACEHOLDERS.PRICE' | translate"
               mask="separator.2"
               thousandSeparator="."
               decimalMarker=","
               [leadZero]="true"
               id="price"
+              data-testid="input-price"
             />
           </nz-input-group>
         </nz-form-control>
       </nz-form-item>
     </div>
-    <div nz-col nzSpan="12">
+    <div nz-col nzXs="24" nzMd="12">
       <nz-form-item>
-        <nz-form-label>Status</nz-form-label>
+        <nz-form-label>{{ 'FIELDS.STATUS' | translate }}</nz-form-label>
         <nz-form-control>
           <label
             nz-checkbox
             formControlName="status"
             id="status"
             (ngModelChange)="onHandleStatus($event)"
+            data-testid="check-status"
           >
-            {{ _form.get('status')?.value }}
+            {{ 'ENUMS.STATUS.' + _form.get('status')?.value | translate }}
           </label>
         </nz-form-control>
       </nz-form-item>
     </div>
   </div>
-  <nz-divider></nz-divider>
-  <section class="action">
-    <button nz-button nzType="default" nzSize="large">Cancelar</button>
-    <button nz-button nzType="primary" nzSize="large" [nzLoading]="false">Salvar</button>
-  </section>
 </form>
+<nz-divider></nz-divider>
+<div nz-row nzJustify="space-between" [nzGutter]="16">
+  <button
+    nz-button
+    nzType="default"
+    nzSize="large"
+    [routerLink]="['/main/list']"
+    nz-col
+    [nzSpan]="6"
+    data-testid="btn-cancel"
+  >
+    {{ 'BUTTONS.CANCEL' | translate }}
+  </button>
+
+  <button
+    nz-button
+    nzType="primary"
+    nzSize="large"
+    [nzLoading]="false"
+    (click)="onSubmit()"
+    nz-col
+    [nzSpan]="6"
+    data-testid="btn-save"
+  >
+    {{ 'BUTTONS.SAVE' | translate }}
+  </button>
+</div>

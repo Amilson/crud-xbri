@@ -1,9 +1,64 @@
-
 // Custom Theming for NG-ZORRO
 // For more information: https://ng.ant.design/docs/customize-theme/en
-@import "../node_modules/ng-zorro-antd/ng-zorro-antd.less";
+@import '../node_modules/ng-zorro-antd/ng-zorro-antd.less';
 
 // Override less variables to here
 // View all variables: https://github.com/NG-ZORRO/ng-zorro-antd/blob/master/components/style/themes/default.less
 
-// @primary-color: #1890ff;
+@gray-50: #f9f9f9;
+@gray-100: #f2f2f2;
+@gray-200: #e5e5e5;
+@gray-300: #d2d2d2;
+@gray-400: #c6c6c6;
+@gray-500: #8e8e93;
+@gray-600: #636366;
+@gray-700: #48484a;
+@gray-800: #3a3a3c;
+@gray-900: #1c1c1e;
+
+//layout e sidebar
+@primary-color: @gray-800;
+@layout-sider-background: @gray-300;
+@menu-dark-bg: @gray-900;
+@menu-dark-item-active-bg: @gray-700;
+@menu-dark-color: #fafafa;
+@menu-dark-item-hover-bg: @gray-700;
+@layout-body-background: @gray-200;
+
+//tabela
+@table-bg: #fff;
+@table-header-bg: @gray-100;
+@table-border-radius-base: 12px;
+
+//link
+@link-color: #1919bb;
+@link-decoration: none;
+@link-hover-decoration: none;
+@link-focus-decoration: none;
+@link-focus-outline: 0;
+
+//modal
+@modal-border-radius: 8px;
+
+//btn
+@btn-border-radius-base: 8px;
+@btn-border-radius-sm: 8px;
+
+//input
+@input-height-base: 38px;
+
+nz-select-top-control,
+nz-input-group,
+input {
+  border-radius: 8px !important;
+}
+
+nz-switch {
+  button {
+    background: red !important;
+
+    &.ant-switch-checked {
+      background: green !important;
+    }
+  }
+}

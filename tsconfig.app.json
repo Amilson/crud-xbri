@@ -3,11 +3,13 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/app",
-    "types": [],
+    "types": ["@angular/localize"],
     "paths": {
       "@store/*": ["./src/app/store/*"],
       "@interfaces": ["./src/app/interfaces"],
-      "@utils": ["./src/app/core/utils"]
+      "@enums": ["./src/app/enums"],
+      "@utils": ["./src/app/core/utils"],
+      "@pipes": ["./src/app/core/pipes"]
     }
   },
   "files": ["src/main.ts"],

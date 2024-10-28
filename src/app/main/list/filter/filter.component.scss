@@ -1,0 +1,13 @@
+:host {
+  margin: 0px 12px;
+
+  .number {
+    text-align: right;
+  }
+
+  .action {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+  }
+}

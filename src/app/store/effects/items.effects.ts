@@ -6,12 +6,12 @@ import { map } from 'rxjs/operators';
 
 @Injectable()
 export class ItemsEffects {
-  load$ = createEffect(
+  generateFakeData$ = createEffect(
     () => {
       return this.actions$.pipe(
-        ofType(itemsActions.load),
+        ofType(itemsActions.generateFakeData),
         map(() => {
-          this.service.load();
+          this.service.generateFakeData();
         })
       );
     },

@@ -22,7 +22,9 @@
     "paths": {
       "@store/*": ["./src/app/store/*"],
       "@interfaces": ["./src/app/interfaces"],
-      "@utils": ["./src/app/core/utils"]
+      "@enums": ["./src/app/enums"],
+      "@utils": ["./src/app/core/utils"],
+      "@pipes": ["./src/app/core/pipes"]
     }
   },
   "angularCompilerOptions": {

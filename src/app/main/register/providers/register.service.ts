@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { ItemData } from '@interfaces';
 import { Store } from '@ngrx/store';
+import { TranslateService } from '@ngx-translate/core';
 import { items as actions } from '@store/actions';
 import { generateRandomString } from '@utils';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
@@ -11,28 +12,20 @@ export class RegisterService {
   constructor(
     private store: Store,
     private router: Router,
-    private notification: NzNotificationService
+    private notification: NzNotificationService,
+    private translateService: TranslateService
   ) {
     //not to do
   }
 
-  private finish(itemId: string) {
-    const type = itemId ? 'alterado' : 'cadastrado';
-    const message = `Item ${type} com sucesso!`;
+  private finish() {
+    const i18n = this.translateService.instant('ALERTS.OPERATION');
 
-    this.notification.success('Informação', message, { nzPlacement: 'topRight' });
+    this.notification.success(i18n.TITLE, i18n.CONTENT, { nzPlacement: 'topRight' });
     this.router.navigate(['/main/list']);
   }
 
   public submit(itemId: string, params: ItemData) {
-    const finish = (itemId: string) => {
-      const type = itemId ? 'alterado' : 'cadastrado';
-      const message = `Item ${type} com sucesso!`;
-
-      this.notification.success('Informação', message, { nzPlacement: 'topRight' });
-      this.router.navigate(['/main/list']);
-    };
-
     const data = {
       id: itemId || generateRandomString(5),
       name: params?.name!,
@@ -43,6 +36,6 @@ export class RegisterService {
     };
 
     this.store.dispatch(actions.upsert({ data }));
-    this.finish(itemId);
+    this.finish();
   }
 }
